@@ -12,7 +12,7 @@
         { href: 'technology.html', label: 'TECHNOLOGY' },
         { href: 'memes.html', label: 'MEMES' },
         { href: 'opinion.html', label: 'OPINION' },
-        { href: 'editor/index.html', label: 'WRITE', editor: true }
+        
     ];
 
     function isActive(href) {
@@ -34,7 +34,7 @@
     <div class="breaking-banner">
         <span class="breaking-label">BREAKING:</span>
         <span class="breaking-text" id="breakingText">CAT5000 surges 420% after anonymous "catfluencer" posts a single blep on X — analysts divided — </span>
-        <a href="https://twitter.com/CAT__COIN" target="_blank" class="breaking-link">Follow @CAT__COIN →</a>
+        <a href="https://x.com/FinancialCatTim" target="_blank" class="breaking-link">Follow @FinancialCatTimes →</a>
     </div>`;
 
     const header = `
@@ -50,7 +50,7 @@
             </div>
             <div class="header-right">
                 <a href="editor/index.html" class="header-btn write-btn" title="Write a new article">✏ Write</a>
-                <a href="https://twitter.com/CAT__COIN" target="_blank" class="header-btn twitter-btn">𝕏 Twitter</a>
+                <a href="https://x.com/FinancialCatTim" target="_blank" class="header-btn twitter-btn">𝕏 Twitter</a>
             </div>
         </div>
     </header>`;
@@ -79,7 +79,7 @@
                     <div class="footer-col">
                         <h5>Community</h5>
                         <a href="https://twitter.com/CAT__COIN" target="_blank">Twitter / X</a>
-                        <a href="https://t.me/cat5000" target="_blank">Telegram</a>
+                        
                     </div>
                     <div class="footer-col">
                         <h5>Trade</h5>
@@ -90,8 +90,8 @@
             <div class="footer-bottom">
                 <p>© 2024-2026 Financial Cat Times. Not financial advice. DYOR. NFA. WAGMI. 🐈</p>
                 <div class="footer-socials">
-                    <a href="https://twitter.com/CAT__COIN" target="_blank">𝕏</a>
-                    <a href="https://t.me/cat5000" target="_blank">TG</a>
+                    <a href="https://x.com/FinancialCatTim" target="_blank">𝕏</a>
+                    
                 </div>
             </div>
         </div>
