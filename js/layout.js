@@ -49,7 +49,7 @@
                 <p class="masthead-sub">CATS, CRYPTO & CAPITAL MARKETS</p>
             </div>
             <div class="header-right">
-                <a href="editor/index.html" class="header-btn write-btn" title="Write a new article">✏ Write</a>
+                
                 <a href="https://x.com/FinancialCatTim" target="_blank" class="header-btn twitter-btn">𝕏 Twitter</a>
             </div>
         </div>
@@ -78,7 +78,7 @@
                     </div>
                     <div class="footer-col">
                         <h5>Community</h5>
-                        <a href="https://twitter.com/CAT__COIN" target="_blank">Twitter / X</a>
+                        <a href="https://x.com/FinancialCatTim" target="_blank">Twitter / X</a>
                         
                     </div>
                     <div class="footer-col">
