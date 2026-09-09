@@ -1258,21 +1258,7 @@ a:hover {
 }
 
 /* ===== Header Write Button ===== */
-.write-btn {
-    background: transparent;
-    color: var(--ft-accent);
-    border: 2px solid var(--ft-accent);
-}
 
-.write-btn:hover {
-    background: var(--ft-accent);
-    color: white;
-}
-
-.nav-link.editor-link {
-    color: var(--ft-accent);
-    font-weight: 700;
-}
 
 /* ===== Article Figures & Images ===== */
 .article-hero figure,
