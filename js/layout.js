@@ -73,7 +73,7 @@
                         <h5>Navigation</h5>
                         <a href="index.html">Home</a>
                         <a href="markets.html">Markets</a>
-                        <a href="editor/index.html">Write Article</a>
+                       
                         <a href="opinion.html">Opinion</a>
                     </div>
                     <div class="footer-col">
