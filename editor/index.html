@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Editor - Financial Cat Times</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .editor-topbar {
+            background: #1A1A1A;
+            color: #FFF;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .editor-topbar .brand {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+        .editor-topbar .brand span { color: #F5A3C0; }
+        .editor-topbar a { color: #FFF; text-decoration: none; font-size: 0.85rem; opacity: 0.85; }
+        .editor-topbar a:hover { opacity: 1; text-decoration: underline; }
+        .editor-lock {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .editor-lock input {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            padding: 7px 10px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background: #2A2A2A;
+            color: #FFF;
+            width: 220px;
+        }
+        .editor-lock label { font-size: 0.8rem; opacity: 0.8; display: flex; gap: 4px; align-items: center; }
+        .load-row { display: flex; gap: 8px; margin-bottom: 14px; }
+        .load-row select { flex: 1; }
+        .saved-link { margin-left: 8px; }
+    </style>
+</head>
+<body class="writer-page">
+
+    <header class="editor-topbar">
+        <div class="brand">🐱 Financial Cat <span>Times</span> — Article Editor</div>
+        <div class="editor-lock">
+            <input type="password" id="field-key" placeholder="Editor key (printed when the server starts)" autocomplete="off">
+            <label><input type="checkbox" id="field-remember-key" checked> remember</label>
+            <a href="../index.html">← Back to site</a>
+        </div>
+    </header>
+
+    <main class="writer-main">
+        <div class="writer-header">
+            <div>
+                <h1 class="writer-title">Write a new article</h1>
+                <p class="writer-subtitle">Fill in the form, preview on the right, then hit Publish — the file is saved straight into the site folder. Only works while your local server (<code>npm run dev</code>) is running, and only with your editor key.</p>
+            </div>
+            <div class="writer-header-actions">
+                <button class="writer-btn secondary" id="btn-load-template">Load template</button>
+                <button class="writer-btn secondary" id="btn-clear">Clear</button>
+            </div>
+        </div>
+
+        <div class="writer-status" id="writer-status"></div>
+
+        <div class="writer-grid">
+            <section class="writer-panel">
+                <h2 class="panel-title">Edit an existing article</h2>
+                <div class="load-row">
+                    <select id="field-existing"><option value="">Loading article list…</option></select>
+                    <button class="writer-btn secondary small" id="btn-load-existing">Load</button>
+                </div>
+
+                <h2 class="panel-title">Article setup</h2>
+                <div class="form-row two-col">
+                    <label class="form-field">
+                        <span>Category style</span>
+                        <select id="field-category">
+                            <option value="crypto-markets">Crypto Markets</option>
+                            <option value="institutional">Institutional Finance</option>
+                            <option value="regulatory">Regulatory</option>
+                            <option value="macro">Macro Analysis</option>
+                            <option value="technology-cat">Technology</option>
+                            <option value="breaking-report">Breaking Report</option>
+                            <option value="plain">Plain (default colour)</option>
+                        </select>
+                    </label>
+                    <label class="form-field">
+                        <span>Category label (optional override)</span>
+                        <input type="text" id="field-category-label" placeholder="e.g. EXCLUSIVE">
+                    </label>
+                </div>
+                <label class="form-field">
+                    <span>Headline</span>
+                    <input type="text" id="field-title" placeholder="Your article headline">
+                </label>
+                <div class="form-row two-col">
+                    <label class="form-field">
+                        <span>Author</span>
+                        <input type="text" id="field-author" placeholder="Chad Coinsworth">
+                    </label>
+                    <label class="form-field">
+                        <span>Date</span>
+                        <input type="date" id="field-date">
+                    </label>
+                </div>
+                <label class="form-field">
+                    <span>File name</span>
+                    <input type="text" id="field-filename" placeholder="article16 (saved as article16.html)">
+                </label>
+
+                <h2 class="panel-title">Hero image</h2>
+                <div class="hero-drop" id="hero-drop">
+                    <div class="hero-preview" id="hero-preview">
+                        <span class="hero-drop-hint">Drop an image here or paste a path below</span>
+                    </div>
+                    <label class="hero-browse">Browse…
+                        <input type="file" id="hero-file-input" accept="image/*" hidden>
+                    </label>
+                </div>
+                <label class="form-field">
+                    <span>Image path (in the images/ folder)</span>
+                    <input type="text" id="field-hero-src" placeholder="images/my-image.png">
+                </label>
+                <div class="form-row two-col">
+                    <label class="form-field">
+                        <span>Alt text</span>
+                        <input type="text" id="field-hero-alt" placeholder="Describe the image">
+                    </label>
+                    <label class="form-field">
+                        <span>Caption (optional)</span>
+                        <input type="text" id="field-hero-caption" placeholder="Caption under the image">
+                    </label>
+                </div>
+
+                <h2 class="panel-title">Article body (HTML)</h2>
+                <div class="toolbar">
+                    <button class="toolbar-btn" data-insert="p" title="Paragraph">¶</button>
+                    <button class="toolbar-btn" data-insert="h2" title="Section heading">H2</button>
+                    <button class="toolbar-btn" data-insert="quote" title="Block quote">❝</button>
+                    <button class="toolbar-btn" data-insert="pullquote" title="Pull quote">”</button>
+                    <button class="toolbar-btn" data-insert="list" title="Bullet list">•</button>
+                    <button class="toolbar-btn" data-insert="cta" title="Inline call-to-action">📣</button>
+                </div>
+                <textarea id="field-body" class="body-editor" spellcheck="true" placeholder="<p><strong>Lead paragraph.</strong> The most important news first.</p>"></textarea>
+
+                <h2 class="panel-title">Insert an image into the body</h2>
+                <div class="inline-image-form">
+                    <label class="form-field">
+                        <span>Image path</span>
+                        <input type="text" id="inline-img-src" placeholder="images/chart.png">
+                    </label>
+                    <label class="form-field">
+                        <span>Alt text</span>
+                        <input type="text" id="inline-img-alt" placeholder="Describe the image">
+                    </label>
+                    <label class="form-field">
+                        <span>Caption (optional)</span>
+                        <input type="text" id="inline-img-caption">
+                    </label>
+                    <label class="form-check">
+                        <input type="checkbox" id="inline-img-wide"> Full width
+                    </label>
+                </div>
+                <div class="actions-row">
+                    <button class="writer-btn secondary small" id="btn-insert-image">Insert image block</button>
+                </div>
+
+                <h2 class="panel-title">Extras</h2>
+                <label class="form-field">
+                    <span>Tags (comma separated)</span>
+                    <input type="text" id="field-tags" placeholder="CAT5000, Memecoin, Solana">
+                </label>
+                <label class="form-field">
+                    <span>Related articles — one per line: file.html | Headline</span>
+                    <textarea id="field-related" rows="3" placeholder="article1.html | CAT5000 becomes the world's first memecoin backed by confidence"></textarea>
+                </label>
+
+                <div class="actions-row">
+                    <button class="writer-btn primary" id="btn-publish">🚀 Publish to site</button>
+                    <button class="writer-btn secondary" id="btn-download">Download HTML</button>
+                </div>
+            </section>
+
+            <section class="writer-panel preview-panel">
+                <h2 class="panel-title">Live preview</h2>
+                <div class="preview-frame">
+                    <div class="article-page preview-article" id="preview-article"></div>
+                </div>
+            </section>
+        </div>
+
+        <div class="writer-tips">
+            <h3>Tips</h3>
+            <ul>
+                <li>Publishing writes a new <code>.html</code> file into the site folder — no more hand-editing old files. Existing <code>article1–15.html</code> can be loaded, edited and republished from the dropdown above.</li>
+                <li>Images can't be uploaded by the browser — save your image into the <code>images/</code> folder yourself, then type its path (e.g. <code>images/my-chart.png</code>).</li>
+                <li>The editor key is printed in the terminal when you run <code>npm run dev</code>. Without it, nobody can publish — on the live static site this page can't save anything at all.</li>
+                <li>After publishing a <em>new</em> article, add a link to it on the homepage (<code>index.html</code>) or a section page so readers can find it.</li>
+                <li>Use the preview's reading-time and layout to sanity-check before publishing.</li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="editor.js"></script>
+</body>
+</html>
